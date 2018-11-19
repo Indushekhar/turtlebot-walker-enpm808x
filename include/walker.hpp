@@ -46,7 +46,6 @@
 */
 
 class Walker {
-
  private:
   // Flag to check collision with obstacle
 
@@ -70,7 +69,6 @@ class Walker {
 
 
  public:
-
     /**
     * @brief Constructor for Walker
     */
@@ -89,7 +87,7 @@ class Walker {
     * @return None
     */
 
-    void checkObstacle(const sensor_msgs::LaserScan::ConstPtr& msg );
+    void checkObstacle(const sensor_msgs::LaserScan::ConstPtr& msg);
 
     /**
     * @brief Method to run the turtlebot with walker behaviour
@@ -98,9 +96,7 @@ class Walker {
     */
 
     void walk();
-
-
-} ;
+};
 
 
 

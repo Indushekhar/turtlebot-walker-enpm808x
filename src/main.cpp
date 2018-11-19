@@ -36,11 +36,9 @@
 #include <walker.hpp>
 
 int main(int argc, char* argv[]) {
-
   // Node Initialization
 
   ros::init(argc, argv, "Walker");
-
   Walker turtlebot_walker;
   turtlebot_walker.walk();
   return 0;
