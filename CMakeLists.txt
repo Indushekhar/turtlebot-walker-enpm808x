@@ -34,6 +34,9 @@ include_directories(
 
 
 
+add_executable(walker src/main.cpp src/walker.cpp)
+target_link_libraries(walker ${catkin_LIBRARIES})
+
 
 
 
