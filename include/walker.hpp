@@ -27,7 +27,7 @@
 /**
 * @file walker.hpp
 * @brief walker class
-* @details Definition of walker class
+* @details Definition of walker class to generate walker behaviour in turtlebot
 * @author Indushekhar Singh
 * @version 1.0
 * @copyright MIT License (c) 2018 Indushekhar Singh
@@ -41,30 +41,61 @@
 #include "geometry_msgs/Twist.h"
 
 
-
+/**
+* @brief Walker class
+*/
 
 class Walker {
 
  private:
+  // Flag to check collision with obstacle
 
   bool collision_flag;
 
+  // Velocity decleration
+
   geometry_msgs::Twist velocity;
+
+  // Nodehandle creation
 
   ros::NodeHandle n;
 
+  // Publisher to publish velocity message.
+
   ros::Publisher velPub;
+
+  // Subscriber to laser scan message
 
   ros::Subscriber laserSub;
 
 
  public:
 
+    /**
+    * @brief Constructor for Walker
+    */
+
     Walker();
+
+    /**
+    * @brief Destructor for Walker
+    */
 
     ~Walker();
 
+    /**
+    * @brief Method to check the distace of turtlebot from obstacle
+    * @param[in] msg laser scan message
+    * @return None
+    */
+
     void checkObstacle(const sensor_msgs::LaserScan::ConstPtr& msg );
+
+    /**
+    * @brief Method to run the turtlebot with walker behaviour
+    * @param[in] None
+    * @return None
+    */
 
     void walk();
 

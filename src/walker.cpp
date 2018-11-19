@@ -37,19 +37,30 @@
 
 Walker::Walker() {
 
+    // Publish velocity
+
     velPub = n.advertise <geometry_msgs::Twist> ("/cmd_vel_mux/input/navi",
     1000);
 
+    // Subscibe to laser scan message
+
     laserSub = n.subscribe <sensor_msgs::LaserScan> ("/scan", 500,
     &Walker::checkObstacle,this);
+
+    // Set collision flag to false
 
     collision_flag = false;
 }
 
 Walker::~Walker() {
 
+    // Reset the velocity
+
     velocity.linear.x = 0;
     velocity.linear.z = 0;
+
+    // Publish the velocity
+
     velPub.publish(velocity);
 
 }
@@ -57,9 +68,15 @@ Walker::~Walker() {
 
 void Walker::checkObstacle(const sensor_msgs::LaserScan::ConstPtr& msg) {
 
+    // Iterate over range values
+
     for (auto i : msg->ranges) {
 
-        if ( i < 0.5) {
+        // Check if the range value is less than some threshold
+
+        if ( i < 0.6) {
+
+        // Set the collision falg to true
 
             collision_flag = true ;
         }
@@ -72,12 +89,19 @@ void  Walker::walk() {
     ros::Rate loop_rate(10);
 
     while (ros::ok()) {
+
+        // Check if collison flag is true
         if (collision_flag) {
+
          ROS_INFO("Obstacle Detected");
+        // Set velocity if collision flag is true
 
             velocity.linear.x = 0.0;
             velocity.angular.z = 0.4;
     } else {
+
+      // Set velocity if collision flag is false.
+
       ROS_INFO("Moving Forward");
       velocity.angular.z = 0.0;
       velocity.linear.x = 0.4;
@@ -85,6 +109,9 @@ void  Walker::walk() {
 
     velPub.publish(velocity);
     ros::spinOnce();
+
+    // Sleep
+
     loop_rate.sleep();
   }
 }

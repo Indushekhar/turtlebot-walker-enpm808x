@@ -27,7 +27,7 @@
 /**
 * @file main.cpp
 * @brief main
-* @details This will call the whole system to run
+* @details This will call the whole system to run by creating the object of Walker class
 * @author Indushekhar Singh
 * @version 1.0
 * @copyright MIT License (c) 2018 Indushekhar Singh
@@ -36,6 +36,8 @@
 #include <walker.hpp>
 
 int main(int argc, char* argv[]) {
+
+  // Node Initialization
 
   ros::init(argc, argv, "Walker");
 
