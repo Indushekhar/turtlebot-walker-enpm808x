@@ -59,7 +59,7 @@ void Walker::checkObstacle(const sensor_msgs::LaserScan::ConstPtr& msg) {
 
     for (auto i : msg->ranges) {
 
-        if ( i < 1) {
+        if ( i < 0.5) {
 
             collision_flag = true ;
         }
@@ -76,11 +76,11 @@ void  Walker::walk() {
          ROS_INFO("Obstacle Detected");
 
             velocity.linear.x = 0.0;
-            velocity.angular.z = 0.5;
+            velocity.angular.z = 0.4;
     } else {
       ROS_INFO("Moving Forward");
       velocity.angular.z = 0.0;
-      velocity.linear.x = 0.5;
+      velocity.linear.x = 0.4;
     }
 
     velPub.publish(velocity);
