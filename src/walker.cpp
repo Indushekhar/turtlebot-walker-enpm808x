@@ -63,7 +63,6 @@ Walker::~Walker() {
 }
 
 void Walker::checkObstacle(const sensor_msgs::LaserScan::ConstPtr& msg) {
-
     // Iterate over range values
     collision_flag = false;
     for (auto i : msg->ranges) {

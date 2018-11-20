@@ -161,6 +161,32 @@ The saved bag file then can be played using following commands :
 <../results>$ rosbag play walker.bag
 
 ```
+
+Running this will generate output like this :
+
+```
+[ INFO] [1542755215.360284072]: Opening walker.bag
+
+Waiting 0.2 seconds after advertising topics... done.
+
+Hit space to toggle paused, or 's' to step.
+ [PAUSED ]  Bag Time:      6.180293   Duration: 5.900293 / 29.870000               55215.30 
+
+```
+
+You can now check on another terminal, which topics are being published by running :
+
+```
+<home>$ rostopic list
+
+```
+Once you have the list, you can see the topic message being publsihed by :
+
+```
+<home>$ rostopic echo <topic which needs to be checked>
+
+```
+
 ### Note
 
 Gazebo should not be running when playing bag file.
