@@ -84,7 +84,7 @@ The data publsihed during the simulation can be recoreded in a bag file using th
 ```
 <home>$ roslaunch turtlebot-walker-enpm808x turtlebot_walker.launch record:=true
 
-``
+```
 This will record data for 30 secodns of all the topic except /camera/* topics.
 
 We can check the information of the bag file using rosbag info command. Sample output looks like below:
