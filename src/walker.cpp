@@ -33,6 +33,9 @@
 * @copyright MIT License (c) 2018 Indushekhar Singh
 */
 
+#include "ros/ros.h"
+#include "sensor_msgs/LaserScan.h"
+#include "geometry_msgs/Twist.h"
 #include "walker.hpp"
 
 Walker::Walker() {
@@ -60,15 +63,13 @@ Walker::~Walker() {
 }
 
 void Walker::checkObstacle(const sensor_msgs::LaserScan::ConstPtr& msg) {
+
     // Iterate over range values
-
+    collision_flag = false;
     for (auto i : msg->ranges) {
-        // Check if the range value is less than some threshold
-
-        if ( i < 0.6 ) {
-        // Set the collision falg to true
-            collision_flag = true;
-        }
+     if ( i < 0.8 ) {
+        collision_flag = true;
+      }
     }
 }
 
@@ -77,25 +78,20 @@ void  Walker::walk() {
     while (ros::ok()) {
         // Check if collison flag is true
         if (collision_flag) {
-         ROS_INFO("Obstacle Detected");
+            ROS_INFO("Obstacle Detected");
         // Set velocity if collision flag is true
-
             velocity.linear.x = 0.0;
             velocity.angular.z = 0.4;
-    } else {
+        } else {
       // Set velocity if collision flag is false.
-      ROS_INFO("Moving Forward");
-      velocity.angular.z = 0.0;
-      velocity.linear.x = 0.4;
+            ROS_INFO("Moving Forward");
+            velocity.angular.z = 0.0;
+            velocity.linear.x = 0.4;
+        }
+        velPub.publish(velocity);
+        ros::spinOnce();
+        loop_rate.sleep();
     }
-
-    velPub.publish(velocity);
-    ros::spinOnce();
-
-    // Sleep
-
-    loop_rate.sleep();
-  }
 }
 
 
