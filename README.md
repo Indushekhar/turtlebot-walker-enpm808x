@@ -93,9 +93,11 @@ We can check the information of the bag file using rosbag info command. Sample o
 indushekhar@indushekhar-GL502VMK:~/808X_ws/src/turtlebot-walker-enpm808x/results$ rosbag info walker.bag 
 
 ```
+
 The output from above command is given below :
 
 ```
+
 path:        walker.bag
 version:     2.0
 duration:    29.9s
@@ -142,6 +144,7 @@ topics:      /clock                                            2986 msgs    : ro
              /scan                                              276 msgs    : sensor_msgs/LaserScan                
              /tf                                               3725 msgs    : tf2_msgs/TFMessage                    (2 connections)
              /tf_static                                           1 msg     : tf2_msgs/TFMessage
+
 
 
 ```
