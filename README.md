@@ -77,6 +77,8 @@ The Turtlebot simulation and walker node can also be launched by a launch file :
 
 ```
 
+To stop the simulation press CTRL+C in the same terminal.
+
 ## Recording bag files
 
 The data publsihed during the simulation can be recoreded in a bag file using the launch file by running the following command:
